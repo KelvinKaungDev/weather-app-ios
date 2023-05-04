@@ -9,12 +9,12 @@
 import UIKit
 
 class WeatherViewController: UIViewController, UITextFieldDelegate {
-
+    
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet var userTextField: UITextField!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,7 +27,9 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print(userTextField.text!)
+        let weatherApi = WeatherApi(cityName: userTextField.text!)
+        print(weatherApi.fetchData())
+        
         userTextField.endEditing(true)
         return true
     }
